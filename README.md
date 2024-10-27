@@ -13,10 +13,12 @@
 
 ## II. Konfiguracja środowiska testowego:
 
-- pobranie IDE 'Visual Studio Code' ->  
+- pobranie IDE **'Visual Studio Code'** ->  
   https://code.visualstudio.com/
-- podranie środwiska uruchomieniowego dla JavaScript, TypeScript 'Node.js' ->  
+- podranie środwiska uruchomieniowego dla JavaScript, TypeScript **'Node.js'** ->  
   https://nodejs.org/en/
+- wtyczka VSC: **'GitLens'** – zaawansowana kontrola wersji ->  
+  https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
 
 1. **W przypadku nowego repo:** Tworzymy katalog z repo 'Projects/repo' na dysku C:/. [opisać_wersję_z_pobieraniem_repo_z_GITa]
 1. Po uruchomieniu VSC otwieramy katalog 'C:/Projects/repo' i tworzymy (inicjalizujemy) projekt node.js za pomocą komendy (w oknie terminalu):
