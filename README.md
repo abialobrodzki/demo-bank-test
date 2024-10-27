@@ -76,7 +76,7 @@
    Zakończenie wyświetlania raportu. W konsoli użyj skrótu Ctrl + c dwukrotnie.
 1. Aby sprawdzić wersję **'Node.js'** użyj polecenia:
    ```javascript
-   node - v;
+   node - v
    ```
 1. Aby przerwać wykonywanie polecenia w terminalu:
    ```javascript
@@ -88,40 +88,40 @@
 
 1. Aby wyświetlić podgląd testów:
    ```javascript
-   await page.pause();
+   await page.pause()
    ```
 1. Aby usunąć focus z elementu:
    ```javascript
-   await page.blur();
+   await page.blur()
    ```
 1. Aby zastosować asercję typu soft (do sprawdzania mniej ważnych rzeczy, a błąd nie przerywa testu):
    ```javascript
-   await expect.soft();
+   await expect.soft()
    ```
 1. Aby zastosować zaznaczyć/odznaczyć i sprawdzić checkbox zamiast click() i asercji:
    ```javascript
-   await page.check();
-   await page.uncheck();
+   await page.check()
+   await page.uncheck()
    ```
 1. Aby zaczekać na pełne załadowanie strony, tzw.'inteligentne czekanie':
    ```javascript
-   await page.waitForLoadState("domcontentloaded");
+   await page.waitForLoadState('domcontentloaded')
    ```
 1. Aby uruchomić tylko 1 test:
    ```javascript
-   test.only("test");
+   test.only('test')
    ```
 1. Import:
    ```javascript
-   import { test, expect } from "@playwright/test";
+   import { test, expect } from '@playwright/test'
    ```
 1. Szablon przypadku testowego:
    ```javascript
-   test("test description", async ({ page }) => {});
+   test('test description', async ({ page }) => {})
    ```
 1. Opis dla scenariusza testów:
    ```javascript
-   test.describe("Group description", () => {});
+   test.describe('Group description', () => {})
    ```
 1. ...
 
@@ -212,7 +212,10 @@ https://github.com/markdown-templates/markdown-emojis
    ```
 
 ## X. Standardy kodu - **Prettier**
-Formatowanie kodu wg standardu dla całego projektu realizowane przez **Prettier**
+
+Formatowanie kodu wg standardu dla całego projektu realizowane przez **Prettier**.
+Reguły formatowania: https://prettier.io/docs/en/options.html.
+
 1. Zainstalowanie paczki Prettier:
    ```javascript
    npm install --save-dev --save-exact prettier
@@ -226,7 +229,7 @@ Formatowanie kodu wg standardu dla całego projektu realizowane przez **Prettier
    - ustawione reguły **[.prettierrc.json]**:
    ```json
    {
-    "singleQuote": true
+     "singleQuote": true
    }
    ```
 1. Uruchomienie formatowania z Prettier:
