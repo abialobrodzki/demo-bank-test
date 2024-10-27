@@ -19,8 +19,10 @@
   https://nodejs.org/en/
 - wtyczka VSC: **'GitLens'** – zaawansowana kontrola wersji ->  
   https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
+- wtyczka VSC: **'Prettier'** – formater kodu ->  
+  https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 
-1. **W przypadku nowego repo:** Tworzymy katalog z repo 'Projects/repo' na dysku C:/. [opisać_wersję_z_pobieraniem_repo_z_GITa]
+1. **W przypadku nowego repo:** Tworzymy katalog z repo 'Projects/repo' na dysku C:/
 1. Po uruchomieniu VSC otwieramy katalog 'C:/Projects/repo' i tworzymy (inicjalizujemy) projekt node.js za pomocą komendy (w oknie terminalu):
    ```javascript
    npm init playwright@latest
@@ -207,4 +209,27 @@ https://github.com/markdown-templates/markdown-emojis
 1. Aktualizacja przeglądarek:
    ```javascript
    npx playwright install
+   ```
+
+## X. Standardy kodu - **Prettier**
+Formatowanie kodu wg standardu dla całego projektu realizowane przez **Prettier**
+1. Zainstalowanie paczki Prettier:
+   ```javascript
+   npm install --save-dev --save-exact prettier
+   ```
+1. Konfigracja Prettier:
+   - ignorowane pliki **[.prettierignore]**:
+   ```
+   package-lock.json
+   playwright-report
+   ```
+   - ustawione reguły **[.prettierrc.json]**:
+   ```json
+   {
+    "singleQuote": true
+   }
+   ```
+1. Uruchomienie formatowania z Prettier:
+   ```javascript
+   npx prettier --write .
    ```
