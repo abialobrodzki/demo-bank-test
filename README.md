@@ -54,6 +54,8 @@
    - wyszukiwanie/zmiana danych: **CTRL + F**
    - kopiowanie zanzaczonej linijki kodu: **ALT + SHIFT + :arrow_down:**
    - komentowanie/odkomentowanie: **Ctrl + /**
+   - przesunięcie linii w górę: **Alt + :arrow_up:**
+   - tworzenie nowej zmiennej: **PPM -> Refaktoryzuj** lub **Ctrl + Shift + R** -> 'Extract to constant in enclosing scope'
 
 ## III. Przydatne komendy - terminal:
 
@@ -236,3 +238,18 @@ Reguły formatowania: https://prettier.io/docs/en/options.html.
    ```javascript
    npx prettier --write .
    ```
+
+## XI. Wzorzec AAA
+W testach użyty został pattern AAA, gdzie:
+ - **Arrange**: przygotowanie danych testowych.
+ - **Act**: wykonanie akcji testowych.
+ - **Assert**: zweryfikowanie oczekiwanych rezultatów.  
+ Przykład:
+ ```javascript
+// Arrange
+   // [kod przygotowania do testów np. wczytanie danych]
+// Act
+   // [kod wykonania akcji]
+// Assert
+   // [kod sprawdzenia rezultatów]
+ ```
