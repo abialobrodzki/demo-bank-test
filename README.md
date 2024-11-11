@@ -52,10 +52,11 @@
    - podgląd zmian: **PPM na pliku -> Open Timeline**
    - formatowanie kodu: **PPM -> Menu kontekstowe -> Format Document**
    - wyszukiwanie/zmiana danych: **CTRL + F**
-   - kopiowanie zanzaczonej linijki kodu: **ALT + SHIFT + :arrow_down:**
+   - kopiowanie zaznaczonej linijki kodu: **ALT + SHIFT + :arrow_down:**
    - komentowanie/odkomentowanie: **Ctrl + /**
    - przesunięcie linii w górę: **Alt + :arrow_up:**
    - tworzenie nowej zmiennej: **PPM -> Refaktoryzuj** lub **Ctrl + Shift + R** -> 'Extract to constant in enclosing scope'
+   - wyświeltenie sugestii autozupełniania: **Ctrl + Spacebar**
 
 ## III. Przydatne komendy - terminal:
 
@@ -83,6 +84,10 @@
 1. Aby przerwać wykonywanie polecenia w terminalu:
    ```javascript
    hit twice Ctrl + C
+   ```
+1. Abu uruchomić Trace Viewer z pliku .zip:
+   ```javascript
+   npx playwright show-trace trace.zip //trace.zip to ścieżka do pliku .zip
    ```
 1. ...
 
@@ -142,6 +147,22 @@
 //   name: 'webkit',
 //   use: { ...devices['Desktop Safari'] },
 // },
+```
+
+1. Włączenie zapisu wideo dla testu zakończonego niepowodzeniem
+
+```javascript
+use: {
+    video: {'retain-on-failure'},
+},
+```
+
+1. Włączenie Trace Viewer dla testu zakończonego niepowodzeniem
+
+```javascript
+use: {
+    trace: {'retain-on-failure'},
+},
 ```
 
 ## VI. Markdown Toolbox:
@@ -227,11 +248,13 @@ Reguły formatowania: https://prettier.io/docs/en/options.html.
    ```
    package-lock.json
    playwright-report
+   test-results
    ```
    - ustawione reguły **[.prettierrc.json]**:
    ```json
    {
-     "singleQuote": true
+     "singleQuote": true,
+     "semi": false
    }
    ```
 1. Uruchomienie formatowania z Prettier:
@@ -240,16 +263,19 @@ Reguły formatowania: https://prettier.io/docs/en/options.html.
    ```
 
 ## XI. Wzorzec AAA
+
 W testach użyty został pattern AAA, gdzie:
- - **Arrange**: przygotowanie danych testowych.
- - **Act**: wykonanie akcji testowych.
- - **Assert**: zweryfikowanie oczekiwanych rezultatów.  
- Przykład:
- ```javascript
+
+- **Arrange**: przygotowanie danych testowych.
+- **Act**: wykonanie akcji testowych.
+- **Assert**: zweryfikowanie oczekiwanych rezultatów.  
+  Przykład:
+
+```javascript
 // Arrange
-   // [kod przygotowania do testów np. wczytanie danych]
+// [kod przygotowania do testów np. wczytanie danych]
 // Act
-   // [kod wykonania akcji]
+// [kod wykonania akcji]
 // Assert
-   // [kod sprawdzenia rezultatów]
- ```
+// [kod sprawdzenia rezultatów]
+```
