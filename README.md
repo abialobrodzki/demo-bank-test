@@ -68,6 +68,10 @@
    ```javascript
    npx playwright test
    ```
+1. Aby uruchomić interfejs graficzny Playwright:
+   ```javascript
+   npx playwright test --ui
+   ```
 1. Aby uruchomić testy z katalogu test z widocznym oknem przeglądarki użyj polecenia:
    ```javascript
    npx playwright test --headed
@@ -76,18 +80,29 @@
    ```javascript
    npx playwright show-report
    ```
-   Zakończenie wyświetlania raportu. W konsoli użyj skrótu Ctrl + c dwukrotnie.
+1. Aby uruchomić Trace Viewer z pliku .zip:
+   ```javascript
+   npx playwright show-trace trace.zip //trace.zip to ścieżka do pliku .zip
+   ```
+1. Aby uruchomić testy z konkretnego pliku:
+   ```javascript
+   npx playwright test tests/login.spec.ts
+   ```
 1. Aby sprawdzić wersję **'Node.js'** użyj polecenia:
    ```javascript
    node - v
    ```
 1. Aby przerwać wykonywanie polecenia w terminalu:
    ```javascript
-   hit twice Ctrl + C
+   Ctrl + C //powtórzone dwukrotnie
    ```
-1. Abu uruchomić Trace Viewer z pliku .zip:
+1. Aby otworzyć plik ze ścieżki w terminalu:
    ```javascript
-   npx playwright show-trace trace.zip //trace.zip to ścieżka do pliku .zip
+   Ctrl + LPM
+   ```
+1. Aby autozupełnić komendę podczas wpisywania użyj przycisku:
+   ```javascript
+   Tab
    ```
 1. ...
 
@@ -130,40 +145,47 @@
    ```javascript
    test.describe('Group description', () => {})
    ```
+1. Funkcje do wykonania przedd testem - **hook beforeEach**:
+   ```javascript
+   test.befoerEach('async ({ page }) => {
+   //kod
+   });
+   ```
 1. ...
 
 ## V. Konfiguracje pliku **[playwright.config.ts]**:
 
-1. Wyłączenie przeglądarek Firefox i Safari
+1. Wyłączenie przeglądarek Firefox i Safari:
 
-```javascript
-/* Configure projects for major browsers */
-// {
-//   name: 'firefox',
-//   use: { ...devices['Desktop Firefox'] },
-// },
+   ```javascript
+   /* Configure projects for major browsers */
+   // {
+   //   name: 'firefox',
+   //   use: { ...devices['Desktop Firefox'] },
+   // },
 
-// {
-//   name: 'webkit',
-//   use: { ...devices['Desktop Safari'] },
-// },
-```
+   // {
+   //   name: 'webkit',
+   //   use: { ...devices['Desktop Safari'] },
+   // },
+   ```
 
-1. Włączenie zapisu wideo dla testu zakończonego niepowodzeniem
-
-```javascript
-use: {
-    video: {'retain-on-failure'},
-},
-```
-
-1. Włączenie Trace Viewer dla testu zakończonego niepowodzeniem
-
-```javascript
-use: {
-    trace: {'retain-on-failure'},
-},
-```
+1. Ustawienie domyślnego adresu url:
+   ```javascript
+   baseURL: 'https://demo-bank.vercel.app',
+   ```
+1. Włączenie zapisu wideo dla testu zakończonego niepowodzeniem:
+   ```javascript
+   use: {
+      video: {'retain-on-failure'},
+   },
+   ```
+1. Włączenie Trace Viewer dla testu zakończonego niepowodzeniem:
+   ```javascript
+   use: {
+      trace: {'retain-on-failure'},
+   },
+   ```
 
 ## VI. Markdown Toolbox:
 
@@ -279,4 +301,15 @@ W testach użyty został pattern AAA, gdzie:
 // [kod wykonania akcji]
 // Assert
 // [kod sprawdzenia rezultatów]
+```
+
+## XII. Wzorzec DRY
+
+W testach użyty został pattern **DRY (czyli Don’t Repeat Yourself)**, poprzez zastosowanie hook(funkcji) **beforeEach()**.  
+Przykład:
+
+```javascript
+test.beforeEach(async ({ page }) => {
+  await page.goto('/')
+})
 ```
