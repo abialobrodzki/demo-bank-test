@@ -254,7 +254,8 @@ Reguły formatowania: https://prettier.io/docs/en/options.html.
    ```json
    {
      "singleQuote": true,
-     "semi": false
+     "semi": false,
+     "endOfLine": "auto"
    }
    ```
 1. Uruchomienie formatowania z Prettier:
