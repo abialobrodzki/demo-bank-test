@@ -238,6 +238,15 @@ https://github.com/markdown-templates/markdown-emojis
   - Windows: **%USERPROFILE%\AppData\Local\ms-playwright**
   - MacOS: **~/Library/Caches/ms-playwright**
   - Linux: **~/.cache/ms-playwright**
+- Przydatne skrypty w sekcji **scripts** (widoczne w zakładce **EXPLORER** -> włączone **NPM SCRIPTS**) :
+   ```json
+   "scripts": {
+    "test": "npx playwright test", //pojedyncza komenda
+    "test:headed": "npx playwright test --headed", //komenda z parametrem
+    "test:pulpit:headed": "npm run test tests/pulpit.spec.ts -- --headed", //inny skrypt z dodanym parametrem
+    "format_text": "npx prettier --write" //komenda formatu prettiera
+   },
+   ```
 
 1. Aby sprawdzić wersję danej paczki wykonaj w konsoli komendę:
    ```javascript
