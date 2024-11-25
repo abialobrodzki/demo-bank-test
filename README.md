@@ -21,6 +21,8 @@
   https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
 - wtyczka VSC: **'Prettier'** – formater kodu ->  
   https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+- wtyczka VSC: **Playwright Test for VSCode** – zarządzanie testami ->  
+  https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright
 
 1. **W przypadku nowego repo:** Tworzymy katalog z repo 'Projects/repo' na dysku C:/
 1. Po uruchomieniu VSC otwieramy katalog 'C:/Projects/repo' i tworzymy (inicjalizujemy) projekt node.js za pomocą komendy (w oknie terminalu):
@@ -57,6 +59,10 @@
    - przesunięcie linii w górę: **Alt + :arrow_up:**
    - tworzenie nowej zmiennej: **PPM -> Refaktoryzuj** lub **Ctrl + Shift + R** -> 'Extract to constant in enclosing scope'
    - wyświeltenie sugestii autozupełniania: **Ctrl + Spacebar**
+   - formatowanie kodu podczas zapisu: w górnym pasku wyszukaj **>Preferences: Open User Settings** -> szukaj **format on save** -> zaznacz **Editor Format On Save**
+   - przeładowanie okna: **Ctrl + Shift + P** -> 'Developer: Reload Window'
+   - szybka zmiana nazwy pliku: **F2**
+   - pokaż szybki fix: **Ctrl + .**
 
 ## III. Przydatne komendy - terminal:
 
@@ -169,7 +175,10 @@
    //   use: { ...devices['Desktop Safari'] },
    // },
    ```
-
+1. Usstawienie liczby workerów:
+   ```javascript
+   workers: process.env.CI ? 1 : undefined, //gdzie undefined to liczba corów procesora/2
+   ```
 1. Ustawienie domyślnego adresu url:
    ```javascript
    baseURL: 'https://demo-bank.vercel.app',
@@ -239,14 +248,14 @@ https://github.com/markdown-templates/markdown-emojis
   - MacOS: **~/Library/Caches/ms-playwright**
   - Linux: **~/.cache/ms-playwright**
 - Przydatne skrypty w sekcji **scripts** (widoczne w zakładce **EXPLORER** -> włączone **NPM SCRIPTS**) :
-   ```json
-   "scripts": {
-    "test": "npx playwright test", //pojedyncza komenda
-    "test:headed": "npx playwright test --headed", //komenda z parametrem
-    "test:pulpit:headed": "npm run test tests/pulpit.spec.ts -- --headed", //inny skrypt z dodanym parametrem
-    "format_text": "npx prettier --write" //komenda formatu prettiera
-   },
-   ```
+  ```json
+  "scripts": {
+   "test": "npx playwright test", //pojedyncza komenda
+   "test:headed": "npx playwright test --headed", //komenda z parametrem
+   "test:pulpit:headed": "npm run test tests/pulpit.spec.ts -- --headed", //inny skrypt z dodanym parametrem
+   "format_text": "npx prettier --write" //komenda formatu prettiera
+  },
+  ```
 
 1. Aby sprawdzić wersję danej paczki wykonaj w konsoli komendę:
    ```javascript
