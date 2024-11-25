@@ -7,7 +7,7 @@
     "test": "npx playwright test",
     "test:headed": "npx playwright test --headed",
     "test:pulpit:headed": "npm run test tests/pulpit.spec.ts -- --headed",
-    "format_text": "npx prettier --write"
+    "format_text": "npx prettier --write ."
   },
   "keywords": [],
   "author": "",
