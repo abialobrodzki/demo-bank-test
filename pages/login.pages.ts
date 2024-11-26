@@ -9,5 +9,8 @@ export class LoginPage {
     this.loginInput = this.page.getByTestId('login-input')
     this.passwordInput = this.page.getByTestId('password-input')
     this.loginButton = this.page.getByTestId('login-button')
+
+    this.errorLogin = this.page.getByTestId('error-login-id')
+    this.errorPassword = this.page.getByTestId('error-login-password')
   }
 }

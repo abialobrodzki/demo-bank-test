@@ -65,6 +65,7 @@
 1. **Instalacja zakończona** W tej chwili mamy gotowe śodowisko do uruchomienia testów
 1. Modyfikacja pliku konfiguracyjnego Playwright dokonywana w pliku **[playwright.config.ts.]** (np. wybór przeglądarki)
 1. Konfiguracja VSC:
+   - zmiana reguł sprawdzających kod:  **Settings ->  “JS/TS › Implicit Project Config: Target” -> z listy: ESNext**
    - włączenie automatycznego zapisu: **File -> Auto Save**
    - w pliku README.md możliwość włączenia podglądu pliku: **Preview**
    - podgląd zmian: **PPM na pliku -> Open Timeline**
