@@ -5,6 +5,22 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" width="88" height="88"/>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png" width="88" height="88"/>
 
+## Spis treści:
+
+- [I. Linki testowanych stron](#i-linki-testowanych-stron)
+- [II. Konfiguracja środowiska ](#ii-konfiguracja-środowiska-testowego)
+- [III. Komendy - terminal](#iii-przydatne-komendy---terminal)
+- [IV. Kod - poradnik](#iv-przydatny-kod)
+- [V. Konfiguracja playwrightconfig.ts](#v-konfiguracje-pliku-playwrightconfigts)
+- [VI. Markdown Toolbox](#vi-markdown-toolbox)
+- [VII. Lokatory i selektory](#vii-lokatory-i-selektoryadresy-elementów)
+- [VIII. DevTools](#viii-chrome---devtools)
+- [IX. Konfiguracja package.json](#ix-aktualizacja---playwright-packagejson)
+- [X. Standard Prettier](#x-standardy-kodu---prettier)
+- [XI. Wzorzec AAA](#xi-wzorzec-aaan)
+- [XII. Wzorec DRY](#xii-wzorzec-dry)
+- [XIII. Wzorzec POM](#xiii-wzorzec-pom)
+
 ## I. Linki testowanych stron:
 
 - strona demo np. https://demo-bank.vercel.app/
@@ -175,6 +191,7 @@
    //   use: { ...devices['Desktop Safari'] },
    // },
    ```
+
 1. Usstawienie liczby workerów:
    ```javascript
    workers: process.env.CI ? 1 : undefined, //gdzie undefined to liczba corów procesora/2
@@ -198,7 +215,7 @@
 
 ## VI. Markdown Toolbox:
 
-https://www.markdowntoolbox.com/pl/blog/
+https://www.markdowntoolbox.com/pl/blog/  
 https://github.com/markdown-templates/markdown-emojis
 
 ## VII. Lokatory i selektory(adresy elementów):
@@ -330,4 +347,54 @@ Przykład:
 test.beforeEach(async ({ page }) => {
   await page.goto('/')
 })
+```
+
+## XIII. Wzorzec POM
+
+Prosta implementacja **Page Object Model** może opierać się na klasach. Klasy te zawierają lokalizatory elementów, które są używane w testach, np. przyciski, dane wejściowe itp.
+
+- Przykładowa struktura katalogów:
+
+```javascript
++-- Projects
+|   +-- pages
+|       +-- login.page.ts
+|       +-- ...
+|   +-- tests
+|       +-- login.spac.ts
+|       +-- ...
+```
+
+- Implementacja strony - Przykładowa implementacja strony logowania w **./pages/login.page.ts**:
+
+```javascript
+import { Locator, Page } from '@playwright/test'
+
+export class LoginPage {
+  loginInput: Locator
+  passwordInput: Locator
+  loginButton: Locator
+
+  constructor(private page: Page) {
+    this.loginInput = this.page.getByTestId('login-input')
+    this.passwordInput = this.page.getByTestId('password-input')
+    this.loginButton = this.page.getByTestId('login-button')
+  }
+}
+```
+
+- Zastosowanie w testach - Przykładowy import wybranej strony:
+
+```javascript
+import { LoginPage } from '../pages/login.page'
+```
+
+- Przykład użycia w testach:
+
+```javascript
+// Act
+const loginPage = new LoginPage(page)
+await loginPage.loginInput.fill(userId)
+await loginPage.passwordInput.fill(userPassword)
+await loginPage.loginButton.click()
 ```
