@@ -4,8 +4,11 @@ import { LoginPage } from '../pages/login.pages'
 import { PulpitPage } from '../pages/pulpit.pages'
 
 test.describe('User login to Demobank', () => {
+  let loginPage: LoginPage
+
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
+    loginPage = new LoginPage(page)
   })
 
   test('successful with correct credentials', async ({ page }) => {
@@ -15,10 +18,7 @@ test.describe('User login to Demobank', () => {
     const expectedUserName = 'Jan Demobankowy'
 
     // Act
-    const loginPage = new LoginPage(page)
-    await loginPage.loginInput.fill(userId)
-    await loginPage.passwordInput.fill(userPassword)
-    await loginPage.loginButton.click()
+    await loginPage.login(userId, userPassword)
 
     // Assert
     const pulpitPage = new PulpitPage(page)
@@ -32,7 +32,6 @@ test.describe('User login to Demobank', () => {
 
     // Act
     // await page.pause() //podgląd testów
-    const loginPage = new LoginPage(page)
     await loginPage.loginInput.fill(userIdError)
     await loginPage.passwordInput.click()
 
@@ -47,7 +46,6 @@ test.describe('User login to Demobank', () => {
     const expectedErrorPassword = 'hasło ma min. 8 znaków'
 
     // Act
-    const loginPage = new LoginPage(page)
     await loginPage.loginInput.fill(userId)
     await loginPage.passwordInput.fill(userPasswordError)
     await loginPage.passwordInput.blur() // utracenie fokusu na elemencie
