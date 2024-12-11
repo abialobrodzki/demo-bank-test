@@ -16,9 +16,17 @@ export class PaymentPage {
     this.transferReceiver = this.page.getByTestId('transfer_receiver')
     this.formAccount = this.page.getByTestId('form_account_to')
     this.formAmount = this.page.getByTestId('form_amount')
-    this.acceptButton = this.page.getByRole('button', {name: 'wykonaj przelew'})
+    this.acceptButton = this.page.getByRole('button', { name: 'wykonaj przelew' })
     this.closeButton = this.page.getByTestId('close-button')
 
     this.messages = this.page.locator('#show_messages')
+  }
+
+  async makeTransfer(transferReceiver: string, transferAccount: string, transferAmount: string): Promise<void> {
+    await this.transferReceiver.fill(transferReceiver)
+    await this.formAccount.fill(transferAccount)
+    await this.formAmount.fill(transferAmount)
+    await this.acceptButton.click()
+    await this.closeButton.click()
   }
 }
