@@ -313,7 +313,8 @@ Reguły formatowania: https://prettier.io/docs/en/options.html.
    {
      "singleQuote": true,
      "semi": false,
-     "endOfLine": "auto"
+     "endOfLine": "auto",
+     "printWidth": 120
    }
    ```
 1. Uruchomienie formatowania z Prettier:
