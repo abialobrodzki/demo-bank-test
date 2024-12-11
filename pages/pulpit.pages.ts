@@ -34,4 +34,25 @@ export class PulpitPage {
     this.moneyValue = this.page.locator('#money_value')
     this.userName = this.page.getByTestId('user-name')
   }
+
+  async executeQuickPayment(TransferReceiver: string, TransferAmount: string, TransferTitle: string): Promise<void> {
+    await this.page.waitForLoadState('domcontentloaded') // wait for page to fully load:
+
+    await this.transferReceiver.selectOption(TransferReceiver)
+    await this.transferAmount.fill(TransferAmount)
+    await this.transferTitle.fill(TransferTitle)
+
+    await this.executeButton.click()
+    await this.closeButton.click()
+  }
+
+  async executeMobileTopUp(mobileReceiver: string, mobileAmount: string): Promise<void> {
+    await this.topupReceiver.selectOption(mobileReceiver)
+    await this.topupAmount.fill(mobileAmount)
+
+    // await page.locator('#uniform-widget_1_topup_agreement').click()  // alternatywa poniżej :)
+    await this.topupAgreement.check()
+    await this.topupExecuteButton.click()
+    await this.closeButton.click()
+  }
 }

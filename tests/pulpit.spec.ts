@@ -5,7 +5,7 @@ import { PulpitPage } from '../pages/pulpit.pages'
 
 test.describe('Pulpit tests', () => {
   let pulpitPage: PulpitPage
-  
+
   test.beforeEach(async ({ page }) => {
     const userId = loginData.userId
     const userPassword = loginData.userPassword
@@ -26,14 +26,7 @@ test.describe('Pulpit tests', () => {
     const expectedMessage = `Przelew wykonany! ${expectedTransferReceiver} - ${TransferAmount},00PLN - ${TransferTitle}`
 
     // Act
-    await page.waitForLoadState('domcontentloaded') // wait for page to fully load:
-
-    await pulpitPage.transferReceiver.selectOption(TransferReceiver)
-    await pulpitPage.transferAmount.fill(TransferAmount)
-    await pulpitPage.transferTitle.fill(TransferTitle)
-
-    await pulpitPage.executeButton.click()
-    await pulpitPage.closeButton.click()
+    await pulpitPage.executeQuickPayment(TransferReceiver, TransferAmount, TransferTitle)
 
     // Assert
     await expect(pulpitPage.messages).toHaveText(expectedMessage)
@@ -46,12 +39,7 @@ test.describe('Pulpit tests', () => {
     const expectedMessage = `Doładowanie wykonane! ${mobileAmount},00PLN na numer ${mobileReceiver}`
 
     // Act
-    await pulpitPage.topupReceiver.selectOption(mobileReceiver)
-    await pulpitPage.topupAmount.fill(mobileAmount)
-    // await page.locator('#uniform-widget_1_topup_agreement').click()  // alternatywa poniżej :)
-    await pulpitPage.topupAgreement.check()
-    await pulpitPage.topupExecuteButton.click()
-    await pulpitPage.closeButton.click()
+    await pulpitPage.executeMobileTopUp(mobileReceiver, mobileAmount)
 
     // Assert
     await expect(pulpitPage.messages).toHaveText(expectedMessage)
@@ -65,12 +53,7 @@ test.describe('Pulpit tests', () => {
     const expectedBalance = Number(initialBalance) - Number(mobileAmount)
 
     // Act
-    await pulpitPage.topupReceiver.selectOption(mobileReceiver)
-    await pulpitPage.topupAmount.fill(mobileAmount)
-    // await page.locator('#uniform-widget_1_topup_agreement').click()  // alternatywa poniżej :)
-    await pulpitPage.topupAgreement.check()
-    await pulpitPage.topupExecuteButton.click()
-    await pulpitPage.closeButton.click()
+    await pulpitPage.executeMobileTopUp(mobileReceiver, mobileAmount)
 
     // Assert
     await expect(pulpitPage.moneyValue).toHaveText(`${expectedBalance}`)
