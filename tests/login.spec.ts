@@ -38,7 +38,7 @@ test.describe('User login to Demobank', () => {
   test(
     'unsuccessful login with too short username',
     {
-      tag: '@login',
+      tag: ['@fail_path', '@login'],
       annotation: [
         { type: 'fail path', description: 'Login short username error path test' },
         { type: 'documentation', description: 'Mozna dać opis i link do dokumentacji: https://playwright.info/' },
@@ -62,7 +62,7 @@ test.describe('User login to Demobank', () => {
   test(
     'unsuccessful login with too short password',
     {
-      tag: '@login',
+      tag: ['@fail_path', '@login'],
       annotation: [
         { type: 'fail path', description: 'Login short password error path test' },
         { type: 'documentation', description: 'Mozna dać opis i link do dokumentacji: https://playwright.info/' },

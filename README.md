@@ -456,7 +456,7 @@ await loginPage.loginButton.click()
    npx playwright test --grep "(?=.*@integration)(?=.*@pulpit)"
    ```
 
-1. **Adnotacje** w Playwright to specjalne oznaczenia dodawane do testów, obiekt składa się z 2 pól – **type** oraz **description**:
+1. **Adnotacje** w Playwright to specjalne oznaczenia dodawane do testów, obiekt składa się z 2 pól – **type**(obowiązkowe) oraz **description**:
    ```javascript
    annotation: [
         { type: 'happy path', description: 'Basic happy path test' },
