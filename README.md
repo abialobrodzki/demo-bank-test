@@ -406,10 +406,13 @@ await loginPage.loginButton.click()
 
 Tagi służą do kategoryzacji testów. Można dodawać tagi do pojedynczych testów lub grup testów podczas ich deklarowania:
 
-- dodanie tagu do nazwy testu (stary format):
+- dodanie tagu do nazwy testu:
 
 ```javascript
+// stary format
 test('unsuccessful login with too short username @login', async ({ page }) => {})
+// nowy format - zalecany
+test('unsuccessful login with too short username', { tag: '@login' }, async ({ page }) => {})
 ```
 
 - polecenie uruchomienia testów z tagiem z terminalu:
@@ -418,18 +421,18 @@ test('unsuccessful login with too short username @login', async ({ page }) => {}
 npx playwright test --grep "@login"
 ```
 
-- dodanie skrytpu uruchamiania w pliku **[package.json]**:
+- dodanie skrytpu uruchamiania testów z tagiem w pliku **[package.json]**:
 
 ```javascript
 "test:tag:login": "npx playwright test --grep \"@login\""
 ```
 
-- przykłady -> więcej w https://playwright.dev/docs/test-cli#reference
+- przykłady -> więcej w https://playwright.dev/docs/test-cli#reference oraz https://playwright.dev/docs/test-annotations#tag-tests
   - Uruchamianie testów, które zawierają w nazwie ciąg znaków @login:
   ```javascript
   npx playwright test --grep "@login"
   ```
-  - Uruchamianie testów, które nie zawierają w nazwie ciągu znaków @login:
+  - Uruchamianie testów, które **nie zawierają** w nazwie ciągu znaków @login:
   ```javascript
   npx playwright test --grep-invert "@login"
   ```

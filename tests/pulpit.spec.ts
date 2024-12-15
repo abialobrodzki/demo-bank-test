@@ -17,7 +17,7 @@ test.describe('Pulpit tests', () => {
     pulpitPage = new PulpitPage(page)
   })
 
-  test('quick payment with correct data @integration @pulpit', async ({ page }) => {
+  test('quick payment with correct data', { tag: ['@integration', '@pulpit'] }, async ({ page }) => {
     // Arrange
     const TransferReceiver = '3'
     const TransferAmount = '666'
@@ -32,7 +32,7 @@ test.describe('Pulpit tests', () => {
     await expect(pulpitPage.messages).toHaveText(expectedMessage)
   })
 
-  test('successful mobile top-up @integration @pulpit', async ({ page }) => {
+  test('successful mobile top-up', { tag: ['@integration', '@pulpit'] }, async ({ page }) => {
     // Arrange
     const mobileReceiver = '500 xxx xxx'
     const mobileAmount = '19'
@@ -45,7 +45,7 @@ test.describe('Pulpit tests', () => {
     await expect(pulpitPage.messages).toHaveText(expectedMessage)
   })
 
-  test('correct balance after successful mobile top-up @integration @pulpit', async ({ page }) => {
+  test('correct balance after successful mobile top-up', { tag: ['@integration', '@pulpit'] }, async ({ page }) => {
     // Arrange
     const mobileReceiver = '500 xxx xxx'
     const mobileAmount = '19'

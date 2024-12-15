@@ -21,7 +21,7 @@ test.describe('Payment tests', () => {
     paymentPage = new PaymentPage(page)
   })
 
-  test('simple payment test @integration @payment', async ({ page }) => {
+  test('simple payment test', { tag: ['@integration', '@payment'] }, async ({ page }) => {
     // Arrange
     const transferReceiver = 'Jan Nowak'
     const transferAccount = '01 2345 6789 0123 4567 89012 34567'
@@ -30,7 +30,7 @@ test.describe('Payment tests', () => {
 
     // Act
     await paymentPage.makeTransfer(transferReceiver, transferAccount, transferAmount)
-    
+
     // Assert
     await expect(paymentPage.messages).toHaveText(expectedMessage)
   })
