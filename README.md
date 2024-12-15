@@ -112,6 +112,10 @@
    ```javascript
    npx playwright test tests/login.spec.ts
    ```
+1. Aby uruchomić testy z tagiem **@login**:
+   ```javascript
+      npx playwright test --grep "@login"
+   ```
 1. Aby sprawdzić wersję **'Node.js'** użyj polecenia:
    ```javascript
    node - v
@@ -402,45 +406,60 @@ await loginPage.passwordInput.fill(userPassword)
 await loginPage.loginButton.click()
 ```
 
-## XIV. Tagi - raporty
+## XIV. Tagi i andotacje- raporty
 
-Tagi służą do kategoryzacji testów. Można dodawać tagi do pojedynczych testów lub grup testów podczas ich deklarowania:
+1. **Tagi** służą do kategoryzacji testów. Można dodawać tagi do pojedynczych testów lub grup testów podczas ich deklarowania:
 
-- dodanie tagu do nazwy testu:
+   - dodanie tagu do nazwy testu:
 
-```javascript
-// stary format
-test('unsuccessful login with too short username @login', async ({ page }) => {})
-// nowy format - zalecany
-test('unsuccessful login with too short username', { tag: '@login' }, async ({ page }) => {})
-```
+   ```javascript
+   // stary format
+   test('unsuccessful login with too short username @login', async ({ page }) => {})
+   // nowy format - zalecany
+   test('unsuccessful login with too short username', { tag: '@login' }, async ({ page }) => {})
+   ```
 
-- polecenie uruchomienia testów z tagiem z terminalu:
+   - polecenie uruchomienia testów z tagiem z terminalu:
 
-```javascript
-npx playwright test --grep "@login"
-```
+   ```javascript
+   npx playwright test --grep "@login"
+   ```
 
-- dodanie skrytpu uruchamiania testów z tagiem w pliku **[package.json]**:
+   - dodanie skrytpu uruchamiania testów z tagiem w pliku **[package.json]**:
 
-```javascript
-"test:tag:login": "npx playwright test --grep \"@login\""
-```
+   ```javascript
+   "test:tag:login": "npx playwright test --grep \"@login\""
+   ```
 
-- przykłady -> więcej w https://playwright.dev/docs/test-cli#reference oraz https://playwright.dev/docs/test-annotations#tag-tests
-  - Uruchamianie testów, które zawierają w nazwie ciąg znaków @login:
-  ```javascript
-  npx playwright test --grep "@login"
-  ```
-  - Uruchamianie testów, które **nie zawierają** w nazwie ciągu znaków @login:
-  ```javascript
-  npx playwright test --grep-invert "@login"
-  ```
-  - Uruchamianie testów, które zawierają w nazwie ciąg znaków @payment lub @login:
-  ```javascript
-  npx playwright test --grep "@payment|@login"
-  ```
-  - Uruchamianie testów, które zawierają w nazwie ciąg znaków @integration oraz @pulpit:
-  ```javascript
-  npx playwright test --grep "(?=.*@integration)(?=.*@pulpit)"
-  ```
+   - przykłady -> więcej w https://playwright.dev/docs/test-cli#reference oraz https://playwright.dev/docs/test-annotations#tag-tests
+   - Uruchamianie testów, które zawierają w nazwie ciąg znaków @login:
+
+   ```javascript
+   npx playwright test --grep "@login"
+   ```
+
+   - Uruchamianie testów, które **nie zawierają** w nazwie ciągu znaków @login:
+
+   ```javascript
+   npx playwright test --grep-invert "@login"
+   ```
+
+   - Uruchamianie testów, które zawierają w nazwie ciąg znaków @payment lub @login:
+
+   ```javascript
+   npx playwright test --grep "@payment|@login"
+   ```
+
+   - Uruchamianie testów, które zawierają w nazwie ciąg znaków @integration oraz @pulpit:
+
+   ```javascript
+   npx playwright test --grep "(?=.*@integration)(?=.*@pulpit)"
+   ```
+
+1. **Adnotacje** w Playwright to specjalne oznaczenia dodawane do testów, obiekt składa się z 2 pól – **type** oraz **description**:
+   ```javascript
+   annotation: [
+        { type: 'happy path', description: 'Basic happy path test' },
+        { type: 'documentation', description: 'Mozna dać opis i link do dokumentacji: https://playwright.info/' }
+      ],
+   ```

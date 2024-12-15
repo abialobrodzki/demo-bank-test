@@ -21,17 +21,27 @@ test.describe('Payment tests', () => {
     paymentPage = new PaymentPage(page)
   })
 
-  test('simple payment test', { tag: ['@integration', '@payment'] }, async ({ page }) => {
-    // Arrange
-    const transferReceiver = 'Jan Nowak'
-    const transferAccount = '01 2345 6789 0123 4567 89012 34567'
-    const transferAmount = '69'
-    const expectedMessage = `Przelew wykonany! ${transferAmount},00PLN dla ${transferReceiver}`
+  test(
+    'simple payment test',
+    {
+      tag: ['@integration', '@payment'],
+      annotation: [
+        { type: 'happy path', description: 'Simple payment path test' },
+        { type: 'documentation', description: 'Mozna dać opis i link do dokumentacji: https://playwright.info/' },
+      ],
+    },
+    async ({ page }) => {
+      // Arrange
+      const transferReceiver = 'Jan Nowak'
+      const transferAccount = '01 2345 6789 0123 4567 89012 34567'
+      const transferAmount = '69'
+      const expectedMessage = `Przelew wykonany! ${transferAmount},00PLN dla ${transferReceiver}`
 
-    // Act
-    await paymentPage.makeTransfer(transferReceiver, transferAccount, transferAmount)
+      // Act
+      await paymentPage.makeTransfer(transferReceiver, transferAccount, transferAmount)
 
-    // Assert
-    await expect(paymentPage.messages).toHaveText(expectedMessage)
-  })
+      // Assert
+      await expect(paymentPage.messages).toHaveText(expectedMessage)
+    },
+  )
 })
