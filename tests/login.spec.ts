@@ -11,7 +11,7 @@ test.describe('User login to Demobank', () => {
     loginPage = new LoginPage(page)
   })
 
-  test('successful with correct credentials @login @smoke', async ({ page }) => {
+  test('successful with correct credentials @smoke @login', async ({ page }) => {
     // Arrange
     const userId = loginData.userId
     const userPassword = loginData.userPassword
