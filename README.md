@@ -20,6 +20,7 @@
 - [XI. Wzorzec AAA](#xi-wzorzec-aaan)
 - [XII. Wzorec DRY](#xii-wzorzec-dry)
 - [XIII. Wzorzec POM](#xiii-wzorzec-pom)
+- [XIV. Tagi - raporty](#xiv-tagi---raporty)
 
 ## I. Linki testowanych stron:
 
@@ -65,7 +66,7 @@
 1. **Instalacja zakończona** W tej chwili mamy gotowe śodowisko do uruchomienia testów
 1. Modyfikacja pliku konfiguracyjnego Playwright dokonywana w pliku **[playwright.config.ts.]** (np. wybór przeglądarki)
 1. Konfiguracja VSC:
-   - zmiana reguł sprawdzających kod:  **Settings ->  “JS/TS › Implicit Project Config: Target” -> z listy: ESNext**
+   - zmiana reguł sprawdzających kod: **Settings -> “JS/TS › Implicit Project Config: Target” -> z listy: ESNext**
    - włączenie automatycznego zapisu: **File -> Auto Save**
    - w pliku README.md możliwość włączenia podglądu pliku: **Preview**
    - podgląd zmian: **PPM na pliku -> Open Timeline**
@@ -400,3 +401,43 @@ await loginPage.loginInput.fill(userId)
 await loginPage.passwordInput.fill(userPassword)
 await loginPage.loginButton.click()
 ```
+
+## XIV. Tagi - raporty
+
+Tagi służą do kategoryzacji testów. Można dodawać tagi do pojedynczych testów lub grup testów podczas ich deklarowania:
+
+- dodanie tagu do nazwy testu (stary format):
+
+```javascript
+test('unsuccessful login with too short username @login', async ({ page }) => {})
+```
+
+- polecenie uruchomienia testów z tagiem z terminalu:
+
+```javascript
+npx playwright test --grep "@login"
+```
+
+- dodanie skrytpu uruchamiania w pliku **[package.json]**:
+
+```javascript
+"test:tag:login": "npx playwright test --grep \"@login\""
+```
+
+- przykłady -> więcej w https://playwright.dev/docs/test-cli#reference
+  - Uruchamianie testów, które zawierają w nazwie ciąg znaków @login:
+  ```javascript
+  npx playwright test --grep "@login"
+  ```
+  - Uruchamianie testów, które nie zawierają w nazwie ciągu znaków @login:
+  ```javascript
+  npx playwright test --grep-invert "@login"
+  ```
+  - Uruchamianie testów, które zawierają w nazwie ciąg znaków @payment lub @login:
+  ```javascript
+  npx playwright test --grep "@payment|@login"
+  ```
+  - Uruchamianie testów, które zawierają w nazwie ciąg znaków @integration oraz @pulpit:
+  ```javascript
+  npx playwright test --grep "(?=.*@integration)(?=.*@pulpit)"
+  ```

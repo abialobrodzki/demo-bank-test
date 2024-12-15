@@ -21,7 +21,7 @@ test.describe('Payment tests', () => {
     paymentPage = new PaymentPage(page)
   })
 
-  test('simple payment test', async ({ page }) => {
+  test('simple payment test @payment @integration', async ({ page }) => {
     // Arrange
     const transferReceiver = 'Jan Nowak'
     const transferAccount = '01 2345 6789 0123 4567 89012 34567'
